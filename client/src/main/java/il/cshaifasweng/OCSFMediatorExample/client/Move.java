@@ -11,6 +11,7 @@ public class Move implements Serializable {
         this.Col = col;
         this.Turn = turn;
     }
+    //meee
     public int getRow(){
         return Row;
     }
