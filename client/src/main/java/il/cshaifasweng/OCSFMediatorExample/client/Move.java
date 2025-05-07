@@ -12,6 +12,7 @@ public class Move implements Serializable {
         this.Turn = turn;
     }
     //meee
+    //
     public int getRow(){
         return Row;
     }
