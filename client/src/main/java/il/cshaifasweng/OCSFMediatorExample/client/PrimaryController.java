@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import org.greenrobot.eventbus.EventBus;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class PrimaryController {
 	private Button[][] boardButtons;
