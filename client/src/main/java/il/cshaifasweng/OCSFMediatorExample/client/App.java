@@ -20,16 +20,16 @@ import org.greenrobot.eventbus.Subscribe;
 public class App extends Application {
 
     private static Scene scene;
-    private SimpleClient client;
 
     @Override
     public void start(Stage stage) throws IOException {
     	EventBus.getDefault().register(this);
-    	client = SimpleClient.getClient();
-    	client.openConnection();
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+        Parent root = loader.load();
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("connect");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -46,12 +46,16 @@ public class App extends Application {
     @Override
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
-    	EventBus.getDefault().unregister(this);
-        client.sendToServer("remove client");
-        client.closeConnection();
-		super.stop();
+        EventBus.getDefault().unregister(this);
+        if(SimpleClient.getClient().isConnected()) {
+            SimpleClient  client = SimpleClient.getClient();
+            client.sendToServer("remove client");
+            client.closeConnection();
+        }
+        super.stop();
 	}
-    
+
+
     @Subscribe
     public void onWarningEvent(WarningEvent event) {
     	Platform.runLater(() -> {

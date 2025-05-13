@@ -71,7 +71,8 @@ public class SimpleServer extends AbstractServer {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (msgString.startsWith("remove client")) {
+		}
+		else if (msgString.startsWith("remove client")) {
 			if (!SubscribersList.isEmpty()) {
 				for (SubscribedClient subscribedClient : SubscribersList) {
 					if (subscribedClient.getClient().equals(client)) {
@@ -80,7 +81,8 @@ public class SimpleServer extends AbstractServer {
 					}
 				}
 			}
-		} else if (msgString.startsWith("add client")) {
+		}
+		else if (msgString.startsWith("add client")) {
 			SubscribedClient newClient = new SubscribedClient(client);
 			if (SubscribersList.size() < 2) {
 				SubscribersList.add(newClient);
@@ -88,7 +90,8 @@ public class SimpleServer extends AbstractServer {
 			if (SubscribersList.size() == 2 && playerO == null && playerX == null) {
 				sendToAllClients("you can start the game");
 			}
-		} else if (msgString.startsWith("start")) {
+		}
+		else if (msgString.startsWith("start")) {
 			sendToAllClients("turn off the start");
 			if (Math.random() < 0.5) {
 				playerX = SubscribersList.get(0).getClient();
@@ -144,7 +147,6 @@ public class SimpleServer extends AbstractServer {
 			return ButtonValue[0][0];
 		}
 
-		// בדיקת אלכסון משני
 		if (ButtonValue[0][2] != null &&
 				ButtonValue[0][2].equals(ButtonValue[1][1]) &&
 				ButtonValue[0][2].equals(ButtonValue[2][0])) {
