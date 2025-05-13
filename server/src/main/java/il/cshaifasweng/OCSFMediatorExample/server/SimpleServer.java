@@ -147,7 +147,6 @@ public class SimpleServer extends AbstractServer {
 			return ButtonValue[0][0];
 		}
 
-		// בדיקת אלכסון משני
 		if (ButtonValue[0][2] != null &&
 				ButtonValue[0][2].equals(ButtonValue[1][1]) &&
 				ButtonValue[0][2].equals(ButtonValue[2][0])) {
